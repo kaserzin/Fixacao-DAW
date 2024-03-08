@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Lista de atletas</h2>
+    <a href="{{ url_for('cadastrar') }}">Adicionar atleta</a>
+    {% if not atletas %}
+    <p>Não há atletas registrados</p>
+    {% endif %}
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Posicao</th>
+                <th>Altura</th>
+                <th>Editar</th>
+                <th>Remover</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for atleta in atletas %}
+            <tr>
+                <td>{{ atleta.nome }}</td>
+                <td>{{ atleta.posicao }}</td>
+                <td>{{ atleta.altura }}</td>
+                <td><a href="{{ url_for('editar', chave=atleta.id)}}">Editar</a></td>
+                <td><a href="{{ url_for('apagar', chave=atleta.id)}}">Remover</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
